@@ -89,19 +89,19 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     await description.type(`Join ggTV Army 5000 INR Challenges at https://discord.gg/NpD3z4h7Kt\nDownload our app at https://play.google.com/store/apps/details?id=com.ggtv\nI do not take credit for any of the clips.\nVisit www.ggtv.co for more information!\n\nEmail: ggtvdotin@gmail.com\nIG: https://www.instagram.com/ggtv_army/\n\nVideo Credit: ${creatorName}\n\nThanks for watching and consider subscribing for more such videos.`);
     
     //click not made for kids
-    console.log("u-1");
+
     await page.waitForSelector('tp-yt-paper-radio-button[name="NOT_MADE_FOR_KIDS"]');
     await page.click('tp-yt-paper-radio-button[name="NOT_MADE_FOR_KIDS"]');
     
     //click More Options
     //await page.waitFor(2000);
-    console.log("u-2");
-    await page.waitFor('ytcp-button[id="toggle-button"]');
+
+    await page.waitForSelector('ytcp-button[id="toggle-button"]');
     await page.click('ytcp-button[id="toggle-button"]');
 
     //add Tags
     //await page.waitFor(1000);
-    console.log("u-3");
+
     await page.waitForSelector('input[placeholder="Add tag"]');
     await page.type('input[placeholder="Add tag"]', tags);
 
@@ -213,7 +213,7 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     await page.waitForSelector('tp-yt-paper-button[aria-label="Sign in"]');
     await page.click('tp-yt-paper-button[aria-label="Sign in"]');
     //await page.waitFor(1000);
-    console.log(1);
+
     
     //type in login credentials
     await page.waitForSelector('input[type="email"]');
@@ -221,8 +221,7 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     await page.type('input[type="email"]', username);
     await page.keyboard.press(String.fromCharCode(13));
     
-    //await page.waitFor(2000);
-    console.log(2);
+    await page.waitFor(2000);
     
     await page.waitForSelector('input[type="password"]');
     await page.click('input[type="password"]');
@@ -231,7 +230,6 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     await page.keyboard.press(String.fromCharCode(13));
     
     //await page.waitFor(10000);
-    console.log(3);
 
     if (game == "Minecraft")
     {
@@ -327,7 +325,6 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     await page.click('img[alt="Avatar image"]');
     
     //await page.waitFor(1000);
-    console.log(4);
     
     await page.waitForSelector('a[href="https://studio.youtube.com/"]');
     await page.click('a[href="https://studio.youtube.com/"]');
@@ -347,8 +344,6 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
 
         //check trimmed
         var f = files[number];
-        console.log("random is "+number);
-        console.log("Length is "+numFiles);
         
         var creatorName=f.split('-')[0];
         console.log(creatorName);
