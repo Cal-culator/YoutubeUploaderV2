@@ -35,6 +35,10 @@ var username;
 var password;
 var tags;
 
+var pubgm_link = "https://play.google.com/store/apps/details?id=com.ggtv&referrer=utm_source%3Dyoutube%26utm_medium%3Ddescription%26utm_term%3Dpubgmobile%26utm_content%3Dyoutubeshorts%26utm_campaign%3DYoutube%2520Shorts%2520Pubg%2520Mobile%26anid%3Dadmob"
+var codm_link = "https://play.google.com/store/apps/details?id=com.ggtv&referrer=utm_source%3Dyoutube%26utm_medium%3Ddescription%26utm_term%3Dcodmobile%26utm_content%3Dyoutubeshorts%26utm_campaign%3DYoutube%2520Shorts%2520COD%2520Mobile%26anid%3Dadmob"
+var ff_link = "https://play.google.com/store/apps/details?id=com.ggtv&referrer=utm_source%3Dyoutube%26utm_medium%3Ddescription%26utm_term%3Dfree%2520fire%26utm_content%3Dyoutubeshorts%26utm_campaign%3DYoutube%2520Shorts%2520Free%2520Fire%26anid%3Dadmob"
+
 
 var game = process.argv[2];
 if (game == "pubg_mobile")
@@ -86,7 +90,18 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     
     //const input = await page.$('ytcp-mention-input[class="style-scope ytcp-mention-textbox"]'[1]);
     await description.click({ clickCount: 3 });
-    await description.type(`Join ggTV Army 5000 INR Challenges at https://discord.gg/NpD3z4h7Kt\nDownload our app at https://play.google.com/store/apps/details?id=com.ggtv\nI do not take credit for any of the clips.\nVisit www.ggtv.co for more information!\n\nEmail: ggtvdotin@gmail.com\nIG: https://www.instagram.com/ggtv_army/\n\nVideo Credit: ${creatorName}\n\nThanks for watching and consider subscribing for more such videos.`);
+    if (game == "pubg_mobile")
+    {
+        await description.type(`Download our app at ${pubgm_link}\nI do not take credit for any of the clips.\nVisit www.ggtv.co for more information!\n\nEmail: ggtvdotin@gmail.com\nIG: https://www.instagram.com/ggtv_army/\n\nVideo Credit: ${creatorName}\n\nThanks for watching and subscribe!`);
+    }
+    if (game == "COD Mobile")
+    {
+        await description.type(`Download our app at ${codm_link}\nI do not take credit for any of the clips.\nVisit www.ggtv.co for more information!\n\nEmail: ggtvdotin@gmail.com\nIG: https://www.instagram.com/ggtv_army/\n\nVideo Credit: ${creatorName}\n\nThanks for watching and subscribe!`);
+    }
+    if (game == "free_fire")
+    {
+        await description.type(`Download our app at ${ff_link}\nI do not take credit for any of the clips.\nVisit www.ggtv.co for more information!\n\nEmail: ggtvdotin@gmail.com\nIG: https://www.instagram.com/ggtv_army/\n\nVideo Credit: ${creatorName}\n\nThanks for watching and subscribe!`);
+    }
     
     //click not made for kids
 
@@ -118,11 +133,14 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     for (i in languages)
     {
         language = await (await(languages[i].getProperty('textContent'))).jsonValue();
-        if (language == 'English')
-        {
-            console.log(i);
-            await languages[i].click();
-        }
+
+
+            if (language == 'English')
+            {
+                console.log(i);
+                await languages[i].click();
+            }
+        
     }
     
     //pick Minecraft 2011
@@ -212,7 +230,7 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     //press sign in
     await page.waitForSelector('tp-yt-paper-button[aria-label="Sign in"]');
     await page.click('tp-yt-paper-button[aria-label="Sign in"]');
-    //await page.waitFor(1000);
+    await page.waitFor(1000);
 
     
     //type in login credentials
@@ -221,7 +239,7 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     await page.type('input[type="email"]', username);
     await page.keyboard.press(String.fromCharCode(13));
     
-    await page.waitFor(2000);
+    await page.waitFor(3000);
     
     await page.waitForSelector('input[type="password"]');
     await page.click('input[type="password"]');
@@ -334,7 +352,7 @@ var upload = async (page, filePath, creatorName, videoTitle) =>
     await page.setBypassCSP(true)
     
     //Where I cut
-    for (let i=0; i < 400; i++)
+    for (let i=0; i < 50; i++)
     {
         let file = editJsonFile('./config.json');
         console.log(i);
